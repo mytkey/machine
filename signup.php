@@ -1,41 +1,4 @@
-<?php
-include_once('db_function.php');
-$db_function = new Db_function();
-if(isset($_POST['login'])){
-	//echo "benny";die();
-	$username  	= 	$_POST['username'];  
-	$password  	= 	$_POST['password'];  
-	$user      	= 	$db_function->login($username, $password);  
-	if($user) { 
-	   // header("location:home.php"); 
-	   return true; 
-	} else {  
-	   // echo "<script>alert('Emailid / Password Not Match')</script>";  
-		return false;
-	}
-}
-if(isset($_POST['signup'])){
-	$email  	=	$_POST['email'];  
-	$firstname 	=	$_POST['firstname'];                        
-	$lastname 	=	$_POST['lastname'];
-	$password 	=	$_POST['password'];
-	$dob 		=	$_POST['dob'];
-	$user     	=	$db_function->signup($email,$firstname,$lastname,$password,$dob);  
-	if($user) { 
-	   // header("location:home.php");  
-		return true;
-	} else {  
-	   // echo "<script>alert('Unable to login')</script>";  
-		return false;
-	}
-}
-if($_SESSION[ "user" ]){
-	header('Location: home.php');
-}else{
-	header('Location: login.php');
-}
-?>
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Login Page</title>
@@ -141,47 +104,13 @@ if($_SESSION[ "user" ]){
 <body>
 	<div class="container">
 		<div class="d-flex justify-content-center h-100">
-			<div class="card login">
-				<div class="card-header">
-					<h3>Sign In</h3>
-				</div>
-				<div class="card-body">
-					<form  action="" method="post" id="login-form">
-						<div class="input-group form-group">
-							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="fas fa-user"></i></span>
-							</div>
-							<input type="text" class="form-control" name="username" placeholder="username" autocomplete="off" required="">							
-						</div>
-						<div class="input-group form-group">
-							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
-							</div>
-							<input type="password" class="form-control" name="password" placeholder="password" autocomplete="off" required="">
-						</div>
-						<div class="row align-items-center remember">
-							<input type="checkbox">Remember Me
-						</div>
-						<div class="form-group">
-							<input type="submit" value="Login" class="btn float-right login_btn" name="login">
-						</div>
-					</form>
-				</div>
-				<div class="card-footer">
-					<div class="d-flex justify-content-center links">
-						Don't have an account?<a href="#" class="map_bttn">Sign Up</a>
-					</div>
-					<div class="d-flex justify-content-center">
-						<a href="#">Forgot your password?</a>
-					</div>
-				</div>
-			</div>
-			<div class="card card-sec signup" style="display: none;">
+
+			<div class="card card-sec signup">
 				<div class="card-header">
 					<h3>Sign UP</h3>
 				</div>
 				<div class="card-body">
-					<form  action="" method="post" id="signup-form">
+					<form  action="index.php" method="post" id="signup-form" enctype="multipart/form-data">
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-envelope"></i></span>
@@ -219,7 +148,7 @@ if($_SESSION[ "user" ]){
 				</div>
 				<div class="card-footer">
 					<div class="d-flex justify-content-center links">
-						Already have an account?<a href="#" class="map_bttn_login">Login</a>
+						Already have an account?<a href="login.php" class="map_bttn_login">Login</a>
 					</div>
 				</div>
 			</div>
@@ -227,15 +156,3 @@ if($_SESSION[ "user" ]){
 	</div>
 </body>
 </html>
-<script type="text/javascript">
-	$(document).ready(function(){
-        $('.map_bttn').click(function(){
-            $('.login').css('display','none');
-            $('.signup').css('display','block');
-        });
-        $('.map_bttn_login').click(function(){
-            $('.login').css('display','block');
-            $('.signup').css('display','none');
-        });
-	});
-</script> -->
